@@ -58,9 +58,9 @@ export const Sidebar = () => {
       <>
         <Link href="/products">Products</Link>
         <Link href="/list">List</Link>
-        <Link href="/upload">Upload</Link>
         <Link href="/doctors">Doctors</Link>
         <Link href="/departments">Departments</Link>
+        <Link className="text-purple-800" href="/upload">Upload</Link>
       </>
     );
   };
@@ -68,7 +68,7 @@ export const Sidebar = () => {
   const renderLogout = () => {
     return (
       <button
-        className="logout text-red-600 text-xs"
+        className="logout text-red-600 text-sm"
         onClick={() => logout?.()}
       >
         Logout
