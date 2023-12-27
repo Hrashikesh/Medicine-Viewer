@@ -32,7 +32,7 @@ export const Sidebar = () => {
       <div className="flex mb-2 items-start justify-between">
         <div className="pl-4">
           <h4 className=" block p-2 pl-0 pb-0 font-bold">WELCOME</h4>
-          <span className="block text-xs w-full text-green-600">
+          <span className="block text-xs w-full text-green-600 capitalize">
             {user.email.split("@")[0]}
           </span>
         </div>
