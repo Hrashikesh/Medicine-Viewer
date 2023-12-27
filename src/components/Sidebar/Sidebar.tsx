@@ -68,7 +68,7 @@ export const Sidebar = () => {
   const renderLogout = () => {
     return (
       <button
-        className="logout text-red-600 text-sm"
+        className="logout text-red-600 text-xs"
         onClick={() => logout?.()}
       >
         Logout
