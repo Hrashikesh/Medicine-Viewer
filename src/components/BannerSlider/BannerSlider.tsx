@@ -18,8 +18,6 @@ export const BannerSlider = () => {
       loop={true}
       pagination={{ clickable: true, dynamicBullets: true }}
       scrollbar={{ draggable: true }}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       <SwiperSlide><Image width={3840} height={2160} className="w-full" alt="slide" src="https://media.slidesgo.com/storage/39496786/responsive-images/0-networking-newsletter___media_library_original_1600_900.jpg" /></SwiperSlide>
       <SwiperSlide><Image width={3840} height={2160} className="w-full" alt="slide" src="https://media.slidesgo.com/storage/39496789/responsive-images/1-networking-newsletter___media_library_original_1600_900.jpg" /></SwiperSlide>

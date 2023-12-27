@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Header } from "@components/Header";
 import { Footer } from "@components/Footer";
-import { StoreProvider } from "@context/provider";
+import { StoreContextProvider } from "@context/context";
 import { Sidebar } from "@components/Sidebar/Sidebar";
 
 import "./globals.css";
-import cn from 'classnames'
+import cn from "classnames";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +20,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="en">
       <head>
@@ -29,13 +28,13 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
         />
       </head>
-      <body className={cn(inter.className, 'relative')}>
-        <StoreProvider>
+      <body className={cn(inter.className, "relative")}>
+        <StoreContextProvider>
           <Header />
           {children}
           <Sidebar />
           <Footer />
-        </StoreProvider>
+        </StoreContextProvider>
       </body>
     </html>
   );

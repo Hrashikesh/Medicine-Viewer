@@ -4,13 +4,11 @@ import { MouseEvent } from "react";
 import Image from "next/image";
 import logo from "@public/logo.png";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { useContext } from "react"
-import { StoreContext } from "@context/context"
+import { useStore } from '@context/context'
 
 export const Header = () => {
   const router = useRouter();
-  const { isOpen, setIsOpen } = useContext(StoreContext)
+  const { setIsOpen } = useStore()
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();

@@ -1,15 +1,13 @@
 "use client";
 
-import { useContext, useEffect, useRef } from "react";
-import { StoreContext } from "@context/context";
+import { useEffect, useRef } from "react";
+import { useStore } from "@context/context";
 import Link from "next/link";
-
 import cn from "classnames";
 
 export const Sidebar = () => {
   const menu = useRef(null);
-
-  const { isOpen, setIsOpen } = useContext(StoreContext);
+  const { isOpen, user, setIsOpen, logout } = useStore();
 
   useEffect(() => {
     if (typeof document !== "undefined") {
@@ -31,10 +29,15 @@ export const Sidebar = () => {
 
   const renderHeading = () => {
     return (
-      <div className="flex items-center justify-between">
-        <h4 className="p-2 pl-4 font-bold">MENU</h4>
+      <div className="flex mb-2 items-start justify-between">
+        <div className="pl-4">
+          <h4 className=" block p-2 pl-0 pb-0 font-bold">WELCOME</h4>
+          <span className="block text-xs w-full text-green-600">
+            {user.email.split("@")[0]}
+          </span>
+        </div>
         <button
-          className="block w-6 h-6 mr-2"
+          className="block w-6 h-6 mr-2 pt-2"
           onClick={() => setIsOpen?.(false)}
         >
           <svg
@@ -62,6 +65,17 @@ export const Sidebar = () => {
     );
   };
 
+  const renderLogout = () => {
+    return (
+      <button
+        className="logout text-red-600 text-xs"
+        onClick={() => logout?.()}
+      >
+        Logout
+      </button>
+    );
+  };
+
   return (
     <div
       ref={menu}
@@ -76,6 +90,7 @@ export const Sidebar = () => {
     >
       {renderHeading()}
       {renderLinks()}
+      {renderLogout()}
     </div>
   );
 };

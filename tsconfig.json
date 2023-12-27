@@ -20,10 +20,11 @@
     ],
     "paths": {
       "@components/*": ["./src/components/*"],
+      "@firebase/*": ["./src/firebase/*"],
       "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@context/*": ["./src/app/context/*"],
+      "@context/*": ["./src/context/*"],
       "@public/*": ["./public/*"],
     }
   },

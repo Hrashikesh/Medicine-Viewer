@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { firestore } from "@components/Firebase";
+import { firestore } from "@firebase/.";
 import { collection, getDocs } from "firebase/firestore";
 import { Product } from "@components/ProductCard/ProductCard";
 
