@@ -65,7 +65,7 @@ export const StoreContextProvider = ({ children }: { children: any }) => {
   }, []);
 
   const login = (password: string) => {
-    const email = "crinova@gmail.com";
+    const email = "cnova@gmail.com";
     return signInWithEmailAndPassword(auth, email, password);
   };
 
