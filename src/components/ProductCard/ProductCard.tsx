@@ -1,12 +1,5 @@
 import Image from "next/image";
-
-export type Product = {
-  id: string;
-  name: string;
-  type: string;
-  image: string;
-  description: string;
-};
+import { Product } from "@schema/index";
 
 type Props = {
   product: Product

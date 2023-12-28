@@ -1,0 +1,1 @@
+export { DepartmentForm } from './DepartmentForm'

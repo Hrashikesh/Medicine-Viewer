@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { firestore } from "@firebase/.";
 import { collection, getDocs } from "firebase/firestore";
-import { Product } from "@components/ProductCard/ProductCard";
+import { Product } from "@schema/.";
+import { useStore } from "@context/context";
 
 export const useProducts = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { setProducts } = useStore();
 
   const fetchProducts = async () => {
     await getDocs(collection(firestore, "products")).then((querySnapshot) => {
@@ -14,18 +15,17 @@ export const useProducts = () => {
         ...doc.data(),
         id: doc.id,
       }));
-      setProducts(newData as Product[]);
+      setProducts?.(newData as Product[]);
     });
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       fetchProducts();
     }
   }, []);
 
   return {
-    products,
     fetchProducts,
   };
 };

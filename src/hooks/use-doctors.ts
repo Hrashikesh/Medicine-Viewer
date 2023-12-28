@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { firestore } from "@firebase/.";
 import { collection, getDocs } from "firebase/firestore";
-import { Doctor } from "@components/Doctor/Doctor";
+import { Doctor } from "@schema/.";
+import { useStore } from "@context/context";
 
 export const useDoctors = () => {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const { setDoctors } = useStore();
 
   const fetchDoctors = async () => {
     await getDocs(collection(firestore, "doctors")).then((querySnapshot) => {
@@ -14,18 +15,17 @@ export const useDoctors = () => {
         ...doc.data(),
         id: doc.id,
       }));
-      setDoctors(newData as Doctor[]);
+      setDoctors?.(newData as Doctor[]);
     });
   };
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       fetchDoctors();
     }
   }, []);
 
   return {
-    doctors,
     fetchDoctors,
   };
 };

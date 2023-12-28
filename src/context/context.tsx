@@ -17,6 +17,7 @@ import {
 import { auth } from "@firebase/.";
 import { LoginForm } from "@components/LoginForm";
 import { Loader } from "@components/Loader";
+import { Product, Department, Doctor } from '@schema/.'
 
 type InitialValues = {
   isOpen: boolean;
@@ -25,6 +26,12 @@ type InitialValues = {
   setUser: Dispatch<SetStateAction<User | null | undefined>> | null;
   login: ((password: string) => Promise<UserCredential>) | null;
   logout: (() => void) | null
+  products: Product[] | undefined
+  departments: Department[] | undefined
+  doctors: Doctor[] | undefined
+  setDoctors: Dispatch<SetStateAction<Doctor[] | undefined>> | null
+  setDepartments: Dispatch<SetStateAction<Department[] | undefined>> | null
+  setProducts: Dispatch<SetStateAction<Product[] | undefined>> | null
 };
 
 type User = {
@@ -38,7 +45,13 @@ const initialValues: InitialValues = {
   user: null,
   setUser: null,
   login: null,
-  logout: null
+  logout: null,
+  products: [],
+  departments: [],
+  doctors: [],
+  setDepartments: null,
+  setDoctors: null,
+  setProducts: null
 };
 
 export const StoreContext = createContext(initialValues);
@@ -47,6 +60,9 @@ export const StoreContextProvider = ({ children }: { children: any }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>();
   const [loading, setLoading] = useState<boolean>(true)
+  const [doctors, setDoctors] = useState<Doctor[]>()
+  const [departments, setDepartments] = useState<Department[]>()
+  const [products, setProducts] = useState<Product[]>()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -75,7 +91,7 @@ export const StoreContextProvider = ({ children }: { children: any }) => {
   }
 
   return (
-    <StoreContext.Provider value={{ isOpen, setIsOpen, user, setUser, login, logout }}>
+    <StoreContext.Provider value={{ isOpen, user, products, departments, doctors, setIsOpen, setUser, login, logout, setDepartments, setDoctors, setProducts }}>
       {loading ? <Loader /> : user ? children : <LoginForm />}
     </StoreContext.Provider>
   );
